@@ -1,0 +1,16 @@
+SAHABAT KUA — GEMINI FALLBACK
+
+ZIP ini sudah memakai fallback otomatis.
+
+Urutan model:
+1. GEMINI_MODEL (jika diisi), default gemini-3.8-flash
+2. gemini-3.7-flash
+3. gemini-3.6-flash
+4. gemini-3.5-flash-lite
+
+Jika model utama terkena 429/5xx atau timeout, server mencoba model berikutnya otomatis.
+Cukup set GEMINI_API_KEY di Vercel. GEMINI_MODEL boleh dikosongkan.
+
+Setelah upload ke Vercel:
+Settings -> Environment Variables -> GEMINI_API_KEY -> Save
+lalu Redeploy.

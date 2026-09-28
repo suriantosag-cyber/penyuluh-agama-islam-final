@@ -1,0 +1,19 @@
+SAHABAT KUA — GEMINI
+
+1. Buat/copy Gemini API key dari Google AI Studio.
+2. Di Vercel → Project → Settings → Environment Variables:
+   Name: GEMINI_API_KEY
+   Value: (API key Gemini Anda)
+3. Pilih Environment yang digunakan (Production, dan Preview bila diperlukan).
+4. Save.
+5. Deployments → Redeploy.
+6. Buka website dan coba Sahabat KUA.
+
+Model default:
+gemini-3.8-flash
+
+Jika ingin mengganti model:
+Name: GEMINI_MODEL
+Value: gemini-3.8-flash
+
+Jangan memasukkan GEMINI_API_KEY ke app.js atau index.html.

@@ -1,0 +1,32 @@
+DEPLOY VERCEL — WEBSITE PENYULUH AGAMA ISLAM 2026 — SAHABAT KUA
+
+AI menggunakan OpenAI Responses API (ChatGPT/OpenAI) melalui endpoint /api/chat.
+Model default: gpt-5.6-luna.
+
+PENTING:
+API key JANGAN ditaruh di app.js, HTML, atau supabase-config.js.
+API key harus dibuat sebagai Environment Variable di Vercel.
+
+LANGKAH:
+1. Upload/import ZIP ini ke Vercel sebagai project.
+2. Vercel → Project → Settings → Environment Variables.
+3. Tambahkan:
+   Name: OPENAI_API_KEY
+   Value: API key OpenAI Anda
+   Environment: Production (dan Preview jika ingin mengetes preview)
+4. Opsional:
+   Name: OPENAI_MODEL
+   Value: gpt-5.6-luna
+5. Setelah menyimpan variable, lakukan Redeploy deployment terbaru.
+6. Buka website → Sahabat KUA → kirim pertanyaan.
+
+CATATAN:
+- Jangan mengirim API key ke ChatGPT atau menaruhnya di file frontend.
+- Supabase tetap dipakai untuk data website/Galeri.
+- AI dapat menjawab pertanyaan umum KUA, termasuk pertanyaan di luar materi lokal.
+- Jika OpenAI bermasalah, chat akan menampilkan pesan error yang lebih jelas daripada fallback lama.
+
+TES:
+Coba pertanyaan:
+"Apa saja persyaratan umum untuk menikah?"
+Jika berhasil, Sahabat KUA akan memberikan jawaban dari AI.
