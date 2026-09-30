@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin - KUA Panca Lautang</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f2;
+      color: #222;
+    }
+
+    header {
+      background: #176b45;
+      color: white;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: white;
+      color: #176b45;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #222;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+      transition: transform .15s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      margin: 5px 0;
+      color: #176b45;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔐 Admin KUA Panca Lautang</h1>
+  <button class="logout" id="logout">Keluar</button>
+</header>
+
+<main>
+
+  <div class="welcome">
+    <h2>Dashboard Admin</h2>
+    <p id="userInfo">Memeriksa akun...</p>
+  </div>
+
+  <div class="menu">
+
+    <a class="card" href="./berita.html">
+      <div class="icon">📰</div>
+      <h2>Berita</h2>
+      <p>Tambah, edit, dan hapus berita website.</p>
+    </a>
+
+    <a class="card" href="./galeri.html">
+      <div class="icon">🖼️</div>
+      <h2>Galeri</h2>
+      <p>Upload, lihat, dan hapus foto dari Supabase.</p>
+    </a>
+
+    <a class="card" href="./dokumen.html">
+      <div class="icon">📄</div>
+      <h2>Dokumen</h2>
+      <p>Kelola dokumen dan file PDF website.</p>
+    </a>
+
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+
+<script>
+  const supabase = window.supabase.createClient(
+    window.SUPABASE_CONFIG.url,
+    window.SUPABASE_CONFIG.anonKey
+  );
+
+  async function checkLogin() {
+    const { data } = await supabase.auth.getSession();
+
+    if (!data.session) {
+      window.location.href = "./login.html";
+      return;
+    }
+
+    document.getElementById("userInfo").textContent =
+      "Login sebagai: " + data.session.user.email;
+  }
+
+  document.getElementById("logout").addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    window.location.href = "./login.html";
+  });
+
+  checkLogin();
+</script>
+
+</body>
+</html>
